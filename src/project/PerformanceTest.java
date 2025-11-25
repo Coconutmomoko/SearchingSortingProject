@@ -2,13 +2,11 @@ package project;
 
 import java.util.Scanner;
 
-/**
- * Performance testing for sorting algorithms.
- * Output format matches the example screenshot exactly.
- */
+
 public class PerformanceTest {
 
     public static void runPerformanceTest(Scanner scanner) {
+
         System.out.print("Give base size n (e.g., 1000): ");
         int n = Utils.readInt(scanner);
 
@@ -19,10 +17,10 @@ public class PerformanceTest {
 
         System.out.println();
 
-        // print header row, matching screenshot alignment
+        // Header row (aligned)
         System.out.print("\t\t\t\t");
         for (int size : sizes) {
-            System.out.printf("%8d", size);
+            System.out.printf("%9d", size);   // changed from %8d → %9d
         }
         System.out.println();
 
@@ -45,10 +43,12 @@ public class PerformanceTest {
     }
 
     private static void printAlgorithmResults(String algoName, int[] sizes) {
+
         long[] compArray = new long[sizes.length];
         long[] timeArray = new long[sizes.length];
 
         for (int i = 0; i < sizes.length; i++) {
+
             int size = sizes[i];
 
             int[] raw = Utils.randomIntArray(size, 0, size * 10);
@@ -65,17 +65,17 @@ public class PerformanceTest {
             timeArray[i] = Utils.nanosToMillis(start, end);
         }
 
-        // comparisons line
+        // comparisons row
         System.out.print(algoName + ",random,comparisons");
         for (long c : compArray) {
-            System.out.printf("%8d", c);
+            System.out.printf("%9d", c);   // changed to %9d
         }
         System.out.println();
 
-        // ms line
+        // ms row
         System.out.print(algoName + ",random,ms");
         for (long t : timeArray) {
-            System.out.printf("%8d", t);
+            System.out.printf("%9d", t);   // changed to %9d
         }
         System.out.println();
     }
@@ -91,7 +91,7 @@ public class PerformanceTest {
         }
     }
 
-    // --- counted insertion sort ---
+    // Counted insertion sort
     private static void insertionSortCounted(CountedInt[] data) {
         for (int i = 1; i < data.length; i++) {
             CountedInt key = data[i];
@@ -105,7 +105,7 @@ public class PerformanceTest {
         }
     }
 
-    // --- counted quicksort ---
+    // Counted quicksort
     private static void quickSortCounted(CountedInt[] data, int low, int high) {
         if (low >= high) return;
 
